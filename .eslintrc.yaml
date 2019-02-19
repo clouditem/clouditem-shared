@@ -49,7 +49,7 @@ rules:
   max-len: off
   array-element-newline:
     - warn
-    - multiline: true
+    - consistent
   no-mixed-requires: off
   no-confusing-arrow: off
   no-ternary: off
