@@ -1,0 +1,10 @@
+---
+env:
+  jest: true
+rules:
+  max-lines-per-function: off
+  prefer-promise-reject-errors: off
+  no-undefined: off
+  max-len: off
+  no-magic-numbers: off
+  no-underscore-dangle: off

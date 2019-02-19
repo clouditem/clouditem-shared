@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`middleware "blank": [{}] 1`] = `
+Object {
+  "connection": "close",
+  "content-length": "0",
+  "date": Anything,
+  "x-powered-by": "Express",
+}
+`;
+
+exports[`middleware "cors allow ioot.org": [{}] 1`] = `
+Object {
+  "access-control-allow-origin": "ioot.org",
+  "connection": "close",
+  "content-length": "0",
+  "date": Anything,
+  "vary": "Origin",
+  "x-powered-by": "Express",
+}
+`;
+
+exports[`middleware "cors": [{}] 1`] = `
+Object {
+  "access-control-allow-origin": "*",
+  "connection": "close",
+  "content-length": "0",
+  "date": Anything,
+  "x-powered-by": "Express",
+}
+`;
+
+exports[`middleware "json with limit": ["{}"] 1`] = `
+Object {
+  "code": 200,
+  "text": "{}",
+}
+`;
+
+exports[`middleware "json": ["{}"] 1`] = `
+Object {
+  "code": 200,
+  "text": "{}",
+}
+`;
+
+exports[`middleware "order reverse fail": ["{}"] 1`] = `
+Object {
+  "code": 200,
+  "text": "",
+}
+`;
+
+exports[`middleware "unauthorized redirects to login": ["{}"] 1`] = `
+Object {
+  "code": 302,
+  "text": "Found. Redirecting to /login",
+}
+`;
+
+exports[`middleware parameters "all": ["path_param", "body_param", "query_param"] 1`] = `"{\\"promised_params\\":{\\"path_param\\":\\"from_path\\",\\"body_param\\":{\\"from\\":\\"body\\"},\\"query_param\\":\\"from query\\"}}"`;
+
+exports[`middleware parameters "body is second": ["body_param"] 1`] = `"{\\"promised_params\\":{\\"body_param\\":{\\"from\\":\\"body\\"}}}"`;
+
+exports[`middleware parameters "error throws error message": ["body_param"] 1`] = `
+"Bad Request
+Error: Request  does not contain value [body_param] in any of the following fields: [params,body,query]
+    at Error (/home/simon/heroku/clouditem-shared/src/util.js:29:88)
+    at process.internalTickCallback (internal/process/next_tick.js:77:7)"
+`;
+
+exports[`middleware parameters "path is first": ["path_param"] 1`] = `"{\\"promised_params\\":{\\"path_param\\":\\"from_path\\"}}"`;
+
+exports[`middleware parameters "query is third": ["query_param"] 1`] = `"{\\"promised_params\\":{\\"query_param\\":\\"from query\\"}}"`;
+
+exports[`routing "parameter mirror": ["get" "/"] 1`] = `
+Object {
+  "code": 404,
+  "text": "Path [/] was not found, try [\\"/:param\\"] instead or use another method",
+}
+`;
+
+exports[`routing "parameter mirror": ["get" "/abrakadabra"] 1`] = `
+Object {
+  "code": 200,
+  "text": "abrakadabra",
+}
+`;
+
+exports[`routing "parameter path": ["get" "/path"] 1`] = `
+Object {
+  "code": 200,
+  "text": "/:param",
+}
+`;
+
+exports[`routing "parameter root": ["get" "/"] 1`] = `
+Object {
+  "code": 200,
+  "text": "root",
+}
+`;
+
+exports[`routing "parameter root": ["get" "/abcdf"] 1`] = `
+Object {
+  "code": 200,
+  "text": "/:param",
+}
+`;
+
+exports[`routing "path parameter": ["get" "/path"] 1`] = `
+Object {
+  "code": 200,
+  "text": "path",
+}
+`;
+
+exports[`routing "rejection": ["get" "/"] 1`] = `
+Object {
+  "code": 400,
+  "text": "Bad Request
+'test_problem'",
+}
+`;
+
+exports[`routing "root parameter": ["get" "/"] 1`] = `
+Object {
+  "code": 200,
+  "text": "root",
+}
+`;
+
+exports[`routing "root parameter": ["get" "/abcdf"] 1`] = `
+Object {
+  "code": 200,
+  "text": "/:param",
+}
+`;
+
+exports[`routing "simple path": ["post" "/path"] 1`] = `
+Object {
+  "code": 200,
+  "text": "done",
+}
+`;
+
+exports[`routing "subpath parameter": ["get" "/st/sub"] 1`] = `
+Object {
+  "code": 404,
+  "text": "Path [/st/sub] was not found, try [\\"/sub/*\\",\\"/:param\\"] instead or use another method",
+}
+`;
+
+exports[`wrong methods do not throw exception and do not show up in possible methods 1`] = `
+Object {
+  "statusCode": 405,
+  "text": StringNotContaining "ignored",
+}
+`;

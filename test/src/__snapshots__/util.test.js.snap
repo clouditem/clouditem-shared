@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`promise_presence empty String 1`] = `"expected test_input to be present"`;
+
+exports[`promise_presence false 1`] = `"expected test_input to be present"`;
+
+exports[`promise_presence name undefined 1`] = `"expected undefined to be present"`;
+
+exports[`promise_presence null 1`] = `"expected test_input to be present"`;
+
+exports[`promise_presence undefined 1`] = `"expected test_input to be present"`;
+
+exports[`promise_presence zero 1`] = `"expected test_input to be present"`;
+
+exports[`promise_value api_key in body and query prefers first 1`] = `
+Object {
+  "api_key": "from body",
+  "body": Object {
+    "api_key": "from body",
+  },
+  "query": Object {
+    "api_key": "from query",
+  },
+}
+`;
+
+exports[`promise_value api_key in query and body prefers first reversed 1`] = `
+Object {
+  "api_key": "from query",
+  "body": Object {
+    "api_key": "from body",
+  },
+  "query": Object {
+    "api_key": "from query",
+  },
+}
+`;
+
+exports[`promise_value api_key in query successfull 1`] = `
+Object {
+  "api_key": Object {},
+  "query": Object {
+    "api_key": Object {},
+  },
+}
+`;
+
+exports[`promise_value empty request 1`] = `"Request [{}] does not contain value [api_key] in any of the following fields: [query]"`;
+
+exports[`promise_value error with circular request structure does show normal error 1`] = `"Request [{ body: [Circular] }] does not contain value [api_key] in any of the following fields: [body]"`;
+
+exports[`promise_value no matching in 1`] = `"Request [{ body: { api_key: {} }, params: {} }] does not contain value [api_key] in any of the following fields: [query]"`;
+
+exports[`promise_value no matching in multiple 1`] = `"Request [{ body: { api_key: {} }, params: {} }] does not contain value [api_key] in any of the following fields: [query,params]"`;
+
+exports[`promise_value no request 1`] = `"expected Request to be present"`;
