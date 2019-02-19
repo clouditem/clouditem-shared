@@ -1,6 +1,5 @@
 const {Router: make_router} = require('express'),
   option_map = require('./route_util_middleware'),
-  {bad_request} = require('./failures.js'),
   method_not_allowed_use_instead = possible_methods => (req, res) => Promise.resolve()
     .then(() => res.status(405)
       .send(`Method [${req.method}] is not allowed, use ${JSON.stringify(possible_methods)} instead`)),
@@ -11,8 +10,7 @@ const {Router: make_router} = require('express'),
   convert_path_object_to_path = obj => Object.keys(obj).map(key => option_map[key](obj[key])),
   make_path = path_description => typeof path_description === 'object'
     ? convert_path_object_to_path(path_description)
-    : (req, res) => path_description(req, res)
-      .catch(bad_request(res)),
+    : convert_path_object_to_path({promise: path_description}),
   make_path_router = method_description => {
 
     const path_router = make_router();
@@ -27,6 +25,9 @@ const {Router: make_router} = require('express'),
 
     Object.keys(host_description)
       .forEach(method => {
+
+        if (option_map[method])
+          app.all('*', option_map[method](host_description[method]));
 
         if (app[method]) {
 

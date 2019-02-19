@@ -58,15 +58,25 @@ Object {
 }
 `;
 
+exports[`middleware cors at root_level 1`] = `
+Object {
+  "access-control-allow-origin": "*",
+  "connection": "close",
+  "content-length": "4",
+  "content-type": "text/html; charset=utf-8",
+  "date": Anything,
+  "etag": "W/\\"4-5f2c/g6AOREdVLWI53srsMrUHDo\\"",
+  "x-powered-by": "Express",
+}
+`;
+
 exports[`middleware parameters "all": ["path_param", "body_param", "query_param"] 1`] = `"{\\"promised_params\\":{\\"path_param\\":\\"from_path\\",\\"body_param\\":{\\"from\\":\\"body\\"},\\"query_param\\":\\"from query\\"}}"`;
 
 exports[`middleware parameters "body is second": ["body_param"] 1`] = `"{\\"promised_params\\":{\\"body_param\\":{\\"from\\":\\"body\\"}}}"`;
 
 exports[`middleware parameters "error throws error message": ["body_param"] 1`] = `
 "Bad Request
-Error: Request  does not contain value [body_param] in any of the following fields: [params,body,query]
-    at Error (/home/simon/heroku/clouditem-shared/src/util.js:29:88)
-    at process.internalTickCallback (internal/process/next_tick.js:77:7)"
+TypeError: Request  does not contain value [body_param] in any of the following fields: [params,body,query]"
 `;
 
 exports[`middleware parameters "path is first": ["path_param"] 1`] = `"{\\"promised_params\\":{\\"path_param\\":\\"from_path\\"}}"`;
@@ -115,11 +125,18 @@ Object {
 }
 `;
 
+exports[`routing "rejection with error handler": ["get" "/"] 1`] = `
+Object {
+  "code": 200,
+  "text": "from handler: Error: test_problem",
+}
+`;
+
 exports[`routing "rejection": ["get" "/"] 1`] = `
 Object {
-  "code": 400,
-  "text": "Bad Request
-'test_problem'",
+  "code": 500,
+  "text": "Internal Server Error
+Error: test_problem",
 }
 `;
 

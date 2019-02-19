@@ -5,7 +5,7 @@ const supertest = require('supertest'),
   express = require('express'),
   send = str => (req, res) => res.status(200).send(str),
   mirror = fn => (req, res) => res.status(200).send(fn(req)),
-  reject = str => () => Promise.reject(str);
+  reject = str => () => Promise.reject(Error(str));
 
 describe('routing', () => {
 
@@ -22,6 +22,7 @@ describe('routing', () => {
   ${{get: {'/:param': send('/:param'), '/path/': send('path')}}}  |  ${'get'}   | ${'/path'}         | ${'parameter path'}
   ${{get: {'/sub/*': send('sub'), '/:param': send('/:param')}}}   |  ${'get'}   | ${'/st/sub'}      | ${'subpath parameter'}
   ${{get: {'/': reject('test_problem')}}}                         |  ${'get'}   | ${'/'}            | ${'rejection'}
+  ${{error_handlers: {Error: (res, err) => res.send(`from handler: ${err}`)}, get: {'/': reject('test_problem')}}}  |  ${'get'}   | ${'/'} | ${'rejection with error handler'}
   `('$test_name: [$req_method $req_path]', ({input, req_method, req_path}) => {
 
   const app = express();
@@ -63,6 +64,13 @@ describe('middleware', () => {
 
 });
 
+  test('cors at root_level', () => {
+
+    const app = express();
+    app.use(sut.create_router_according_to_mapping({cors: undefined, post: {'/target': (req, res) => res.send('done')}}));
+    return Promise.resolve(supertest(app).post('/target')).then(({header}) => expect(header).toMatchSnapshot({date: expect.anything()}));
+
+  });
   describe('parameters', () => {
 
     test.each`

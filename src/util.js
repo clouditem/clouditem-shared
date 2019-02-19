@@ -14,7 +14,7 @@ const promise_presence = (name, x) => new Promise((resolve, reject) => {
 
   promise_field = (value, key) => promise_presence('value', value)
     .then(() => promise_presence(`value[${key}]`, value[key]))
-    .catch(() => Promise.reject(new Error(`expected ${key} to be present`))),
+    .catch(() => Promise.reject(new TypeError(`expected ${key} to be present`))),
 
   promise_value_in_field_of_request = (value_name, fields, request) => promise_presence('Request', request)
     .then(present_request => (fields.filter
@@ -24,7 +24,7 @@ const promise_presence = (name, x) => new Promise((resolve, reject) => {
       .filter(field => present_request[field]))
     .then(present_fields => present_fields.filter(field => request[field][value_name]))
     .then(present_fields => present_fields.map(field => request[field][value_name]))
-    .then(fields_containing_value => fields_containing_value.shift() || Promise.reject(Error(`Request  does not contain value [${value_name}] in any of the following fields: [${fields}]`)))
+    .then(fields_containing_value => fields_containing_value.shift() || Promise.reject(new TypeError(`Request  does not contain value [${value_name}] in any of the following fields: [${fields}]`)))
     .then(value => request.promised_params
       ? request.promised_params[value_name] = value
       : request.promised_params = {[value_name]: value}

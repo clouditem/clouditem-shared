@@ -1,13 +1,12 @@
-const {inspect} = require('util'),
-  failMaker = (status, message) => res => err => {
+const failMaker = (status, message) => res => err => {
 
-    if (err)
-      console.dir(err);
+  if (err)
+    console.dir(err);
 
-    return res.status(status)
-      .end(`${message}\n${inspect(err)}`);
+  return res.status(status)
+    .end(`${message}\n${err}`);
 
-  };
+};
 module.exports = {
   forbidden: failMaker(403, 'Forbidden'),
   not_found: failMaker(404, 'Not Found'),
