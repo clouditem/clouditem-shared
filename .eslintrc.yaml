@@ -1,0 +1,86 @@
+---
+parserOptions:
+  ecmaVersion: 2018
+  ecmaFeatures:
+    impliedStrict: true
+root: true
+env:
+  node: true
+extends: eslint:all
+globals:
+  Promise: false
+  Symbol: false
+  Map: false
+rules:
+  quotes:
+    - warn
+    - single
+  indent:
+    - warn
+    - 2
+  dot-location:
+    - warn
+    - property
+  camelcase: off
+  id-match:
+    - warn
+    - ^[a-z]+(\w+)*$
+    - properties: false
+      onlyDeclarations: true
+      ignoreDestructuring: true
+  quote-props:
+    - warn
+    - as-needed
+  no-process-env: off
+  comma-dangle:
+    - warn
+    - always-multiline
+  arrow-parens:
+    - warn
+    - as-needed
+  sort-vars: off
+  sort-keys: off
+  no-plusplus: off
+  no-return-assign: off
+  function-paren-newline: off
+  object-property-newline:
+    - warn
+    - allowAllPropertiesOnSameLine: true
+  max-len: off
+  array-element-newline:
+    - warn
+    - multiline: true
+  no-mixed-requires: off
+  no-confusing-arrow: off
+  no-ternary: off
+  no-console: off
+  no-inline-comments: off
+  line-comment-position: off
+  no-magic-numbers:
+    - warn
+    - ignore:
+      - -1
+      - 0
+      - 1
+      - 2
+      - 200
+  operator-linebreak:
+    - warn
+    - before
+  curly:
+    - warn
+    - multi-or-nest
+    - consistent
+  nonblock-statement-body-position:
+    - warn
+    - below
+  multiline-comment-style:
+    - warn
+    - separate-lines
+  capitalized-comments: off
+  no-prototype-builtins: off
+  init-declarations:
+    - error
+    - always
+  no-undefined: off # not necessary while no-global-assign and no-shadow-restricted-names are active
+  require-jsdoc: off
