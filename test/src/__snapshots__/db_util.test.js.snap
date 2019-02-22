@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`["table", "row1", "row2", "row3"] : {"row1": "row1_val", "row2": "row2_val"} 1`] = `
+Object {
+  "delete_from": Array [
+    "DELETE FROM table WHERE row1 = \${row1} AND row2 = \${row2} RETURNING row1,row2,row3",
+    Object {
+      "row1": "row1_val",
+      "row2": "row2_val",
+    },
+  ],
+  "insert_into": Array [
+    "INSERT INTO table (row1,row2) VALUES (\${row1},\${row2}) RETURNING row1,row2,row3",
+    Object {
+      "row1": "row1_val",
+      "row2": "row2_val",
+    },
+  ],
+  "select_all": Array [
+    "SELECT row1,row2,row3  FROM table",
+  ],
+  "select_where": Array [
+    "SELECT row1,row2,row3 FROM table WHERE row1 = \${row1} AND row2 = \${row2}",
+    Object {
+      "row1": "row1_val",
+      "row2": "row2_val",
+    },
+  ],
+}
+`;
+
+exports[`["table", "row1", "row2", "row3"] : {"row2": "row1_val", "row3": "row2_val"} 1`] = `
+Object {
+  "delete_from": Array [
+    "DELETE FROM table WHERE row2 = \${row2} AND row3 = \${row3} RETURNING row1,row2,row3",
+    Object {
+      "row2": "row1_val",
+      "row3": "row2_val",
+    },
+  ],
+  "insert_into": Array [
+    "INSERT INTO table (row2,row3) VALUES (\${row2},\${row3}) RETURNING row1,row2,row3",
+    Object {
+      "row2": "row1_val",
+      "row3": "row2_val",
+    },
+  ],
+  "select_all": Array [
+    "SELECT row1,row2,row3  FROM table",
+  ],
+  "select_where": Array [
+    "SELECT row1,row2,row3 FROM table WHERE row2 = \${row2} AND row3 = \${row3}",
+    Object {
+      "row2": "row1_val",
+      "row3": "row2_val",
+    },
+  ],
+}
+`;
