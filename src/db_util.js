@@ -20,7 +20,7 @@ module.exports = db => (table, ...var_names) => {
        ON CONFLICT (${identifier}) DO SET ${filtered_parameter(req)
       .filter(str => str !== identifier)
       .map(str => `${str} = $\{${str}}`)
-      .join(',')}`),
+      .join(',')}`, req.promised_params),
     delete_from: req => db.many(`DELETE FROM ${table} WHERE ${filtered_where_clause(req)} RETURNING ${var_list}`, req.promised_params),
   };
 
