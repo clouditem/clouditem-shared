@@ -1,6 +1,6 @@
 {
   "name": "clouditem-shared",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Utility-code for clouditem-services",
   "main": "index.js",
   "dependencies": {
