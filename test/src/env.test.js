@@ -7,6 +7,8 @@ input                            | env               | requested          |  tes
 ${{PORT: undefined}}             |  ${{PORT: 8080}}  | ${['PORT']}        | ${'property present'}
 ${{PORT: undefined}}             |  ${{}}            | ${['PORT']}        | ${'property required but not present'}
 ${{PORT: 8080}}                  |  ${{}}            | ${['PORT']}        | ${'property absent, default set'}
+${{PORT: 0}}                     |  ${{}}            | ${['PORT']}        | ${'property falsy'}
+${{PORT: undefined}}             |  ${{PORT: 0}}     | ${['PORT']}        | ${'default falsy'}
 ${{PORT: port => port + 1}}      |  ${{PORT: 8080}}  | ${['PORT']}        | ${'func increment by one'}
 ${{}}                            |  ${{}}            | ${['PORT']}        | ${'property absent, but requested'}
 ${{PORT: () => { throw Error('test'); }}}   |  ${{PORT: 8080}}  | ${['PORT']}        | ${'func throw error with message test'}
