@@ -27,10 +27,12 @@ module.exports = {
     const params = typeof string_or_array_of_params === 'string'
       ? [string_or_array_of_params]
       : string_or_array_of_params;
-    let promise_accumulator = Promise.resolve();
-    params.forEach(param => promise_accumulator = promise_accumulator.then(() => promise_value(param).in(['params', 'body', 'query'])
-      .of_request(req)));
-    return promise_accumulator.then(() => next()).catch(bad_request(res));
+
+    return Promise.all(
+      params.map(param => promise_value(param).in(['params', 'body', 'query']).of_request(req))
+    )
+      .then(() => next())
+      .catch(bad_request(res));
 
   },
   promise: promise => (req, res) => promise(req, res).catch(bad_request(res)),

@@ -1,41 +1,32 @@
-const promise_presence = (name, x) => new Promise((resolve, reject) => {
+const {inspect} = require('util'),
 
-    if (x) { // Undefined and null are falsy
+  is_present = val => typeof val !== 'undefined' && val !== null
+    ? true
+    : false,
 
-      resolve(x);
+  promise_presence = (name, val) => is_present(val)
+    ? Promise.resolve(val)
+    : Promise.reject(new Error(`expected ${name} to be present`)),
 
-    } else {
-
-      reject(Error(`expected ${name} to be present`));
-
-    }
-
-  }),
-
-  promise_field = (value, key) => promise_presence('value', value)
-    .then(() => promise_presence(`value[${key}]`, value[key]))
-    .catch(() => Promise.reject(new TypeError(`expected ${key} to be present`))),
-
-  promise_value_in_field_of_request = (value_name, fields, request) => promise_presence('Request', request)
-    .then(present_request => (fields.filter
-      ? fields
-      : [fields]
+  promise_value_in_field_of_request = (name, field_or_fields, request) => promise_presence('Request', request)
+    .then(() => request.promised_params = request.promised_params || {})
+    .then(() => Array.isArray(field_or_fields)
+      ? field_or_fields
+      : [field_or_fields]
     )
-      .filter(field => present_request[field]))
-    .then(present_fields => present_fields.filter(field => request[field][value_name]))
-    .then(present_fields => present_fields.map(field => request[field][value_name]))
-    .then(fields_containing_value => fields_containing_value.shift() || Promise.reject(new TypeError(`Request  does not contain value [${value_name}] in any of the following fields: [${fields}]`)))
-    .then(value => request.promised_params
-      ? request.promised_params[value_name] = value
-      : request.promised_params = {[value_name]: value}
-    )
-    .then(() => request),
+    .then(fields => fields.some(field => request.hasOwnProperty(field) && request[field].hasOwnProperty(name)
+      ? (request.promised_params[name] = request[field][name], true)
+      : false
+    ))
+    .then(success => success
+      ? Promise.resolve(request)
+      : Promise.reject(new Error(`Request does not contain value [${name}] in any of the following fields: [${field_or_fields}]`))
+    ),
 
   promise_value = value_name => ({in: fields => ({of_request: request => promise_value_in_field_of_request(value_name, fields, request)})});
 
 
 module.exports = {
   promise_presence,
-  promise_field,
   promise_value,
 };

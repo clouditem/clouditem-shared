@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`promise_presence empty String 1`] = `[Error: expected test_input to be present]`;
+exports[`promise_presence empty String 1`] = `""`;
 
-exports[`promise_presence false 1`] = `[Error: expected test_input to be present]`;
+exports[`promise_presence false 1`] = `false`;
 
 exports[`promise_presence name undefined 1`] = `[Error: expected undefined to be present]`;
 
@@ -10,7 +10,18 @@ exports[`promise_presence null 1`] = `[Error: expected test_input to be present]
 
 exports[`promise_presence undefined 1`] = `[Error: expected test_input to be present]`;
 
-exports[`promise_presence zero 1`] = `[Error: expected test_input to be present]`;
+exports[`promise_presence zero 1`] = `0`;
+
+exports[`promise_value api_key in [query] successfull 1`] = `
+Object {
+  "promised_params": Object {
+    "api_key": Object {},
+  },
+  "query": Object {
+    "api_key": Object {},
+  },
+}
+`;
 
 exports[`promise_value api_key in body and query prefers first 1`] = `
 Object {
@@ -51,12 +62,12 @@ Object {
 }
 `;
 
-exports[`promise_value empty request 1`] = `[TypeError: Request  does not contain value [api_key] in any of the following fields: [query]]`;
+exports[`promise_value empty request 1`] = `[Error: Request does not contain value [api_key] in any of the following fields: [query]]`;
 
-exports[`promise_value error with circular request structure does show normal error 1`] = `[TypeError: Request  does not contain value [api_key] in any of the following fields: [body]]`;
+exports[`promise_value error with circular request structure does show normal error 1`] = `[Error: Request does not contain value [api_key] in any of the following fields: [body]]`;
 
-exports[`promise_value no matching in 1`] = `[TypeError: Request  does not contain value [api_key] in any of the following fields: [query]]`;
+exports[`promise_value no matching in 1`] = `[Error: Request does not contain value [api_key] in any of the following fields: [query]]`;
 
-exports[`promise_value no matching in multiple 1`] = `[TypeError: Request  does not contain value [api_key] in any of the following fields: [query,params]]`;
+exports[`promise_value no matching in multiple 1`] = `[Error: Request does not contain value [api_key] in any of the following fields: [query,params]]`;
 
 exports[`promise_value no request 1`] = `[Error: expected Request to be present]`;

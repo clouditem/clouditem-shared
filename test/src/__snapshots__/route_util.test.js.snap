@@ -74,10 +74,7 @@ exports[`middleware parameters "all": ["path_param", "body_param", "query_param"
 
 exports[`middleware parameters "body is second": ["body_param"] 1`] = `"{\\"promised_params\\":{\\"body_param\\":{\\"from\\":\\"body\\"}}}"`;
 
-exports[`middleware parameters "error throws error message": ["body_param"] 1`] = `
-"Bad Request
-TypeError: Request  does not contain value [body_param] in any of the following fields: [params,body,query]"
-`;
+exports[`middleware parameters "error throws error message": ["body_param"] 1`] = `"from handler: Error: Request does not contain value [body_param] in any of the following fields: [params,body,query]"`;
 
 exports[`middleware parameters "path is first": ["path_param"] 1`] = `"{\\"promised_params\\":{\\"path_param\\":\\"from_path\\"}}"`;
 
