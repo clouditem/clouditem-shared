@@ -17,8 +17,7 @@ Object {
     },
   ],
   "insert_or_update": Array [
-    "INSERT INTO table (row1,row2) VALUES (\${row1},\${row2}) RETURNING row1,row2,row3
-       ON CONFLICT (row2) DO SET row1 = \${row1}",
+    "INSERT INTO table (row1,row2) VALUES (\${row1},\${row2}) ON CONFLICT (row2) DO UPDATE SET row1 = \${row1} RETURNING row1,row2,row3",
     Object {
       "row1": "row1_val",
       "row2": "row2_val",
@@ -54,8 +53,7 @@ Object {
     },
   ],
   "insert_or_update": Array [
-    "INSERT INTO table (row2,row3) VALUES (\${row2},\${row3}) RETURNING row1,row2,row3
-       ON CONFLICT (row2) DO SET row3 = \${row3}",
+    "INSERT INTO table (row2,row3) VALUES (\${row2},\${row3}) ON CONFLICT (row2) DO UPDATE SET row3 = \${row3} RETURNING row1,row2,row3",
     Object {
       "row2": "row1_val",
       "row3": "row2_val",

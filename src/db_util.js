@@ -16,11 +16,11 @@ module.exports = db => (table, ...var_names) => {
     select_all: () => db.any(`SELECT ${var_list}  FROM ${table}`),
     select_where: req => db.any(`SELECT ${var_list} FROM ${table} WHERE ${filtered_where_clause(req)}`, req.promised_params),
     insert_into: req => db.one(`${insert_clause(req)} RETURNING ${var_list}`, req.promised_params),
-    insert_or_update: (req, identifier) => db.none(`${insert_clause(req)
+    insert_or_update: (req, identifier) => db.one(`${insert_clause(req)
     } ON CONFLICT (${identifier}) DO UPDATE SET ${filtered_parameter(req)
       .filter(str => str !== identifier)
       .map(str => `${str} = $\{${str}}`)
-      .join(',')}`, req.promised_params),
+      .join(',')} RETURNING ${var_list}`, req.promised_params),
     delete_from: req => db.many(`DELETE FROM ${table} WHERE ${filtered_where_clause(req)} RETURNING ${var_list}`, req.promised_params),
   };
 
