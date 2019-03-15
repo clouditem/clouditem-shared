@@ -4,12 +4,13 @@
   "description": "Utility-code for clouditem-services",
   "main": "index.js",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "4.16.3",
     "express-fileupload": "^0.4.0",
     "express-jwt": "^5.3.1",
     "express-jwt-authz": "^1.0.0",
     "express-session": "^1.15.6",
-    "cors": "^2.8.4",
+    "node-fetch": "^2.3.0",
     "zealit": "^2.4.1"
   },
   "devDependencies": {
