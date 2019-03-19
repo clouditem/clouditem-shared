@@ -22,14 +22,21 @@ module.exports = {
     if (typeof user !== 'object')
       return bad_request(res)(new TypeError('No or invalid JWT given'));
 
+    if (user.item_id !== req.promised_params.item_id)
+      return bad_request(res)(new TypeError('JWT for wrong item given'));
+
     if (permissions.indexOf('read') !== -1
-      || !user.public_read
-      || !user.is_creator)
+      && !user.public_read
+      && !user.is_creator)
       return bad_request(res)(new TypeError('You do not have the \'read\' permission'));
 
     if (permissions.indexOf('write') !== -1
-      || !user.public_write
-      || !user.is_creator)
+      && !user.public_write
+      && !user.is_creator)
+      return bad_request(res)(new TypeError('You do not have the \'write\' permission'));
+
+    if (permissions.indexOf('creator') !== -1
+      && !user.is_creator)
       return bad_request(res)(new TypeError('You do not have the \'write\' permission'));
 
     return next();

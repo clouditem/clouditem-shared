@@ -8,12 +8,13 @@ const jwt = require('express-jwt'),
     return (req, payload, done) => {
 
       if (Date.now() < next_fetch)
-        return done(cache);
+        return done(null, cache);
 
       next_fetch = Date.now() + (60 * 1000 * period);
       return fetch(url)
-        .then(res => cache = res)
-        .then(res => done(null, res));
+        .then(res => res.text())
+        .then(text => cache = text)
+        .then(text => done(null, text));
 
     };
 
@@ -27,7 +28,6 @@ const jwt = require('express-jwt'),
 
     return jwt({
       secret: cached_jwt_secret_fetch(options.jwt_secret_url, options.jwt_secret_refresh_period),
-      //getToken: req => //TODO do we need a custom JWT retrieval?
       credentialsRequired: options.require_credentials || false,
     });
 
