@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`jwt endpoint default public_key matches private key 1`] = `
+Object {
+  "aud": "test_audience",
+  "exp": 1554121191,
+  "iat": 1554117591,
+  "is_creator": false,
+  "iss": "localhost",
+  "item_id": "test_item",
+  "public_read": true,
+  "public_write": false,
+  "user": "Dummy",
+}
+`;
+
+exports[`returns public_key under url 1`] = `
+"-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE5hU0g65QNwW4JKUZ4VfpqfeonCFf
+ZDPqIL3DNu4Wh3HFgJnJeAgVn1zbLDM74qH5hsLbjLdDxpxuC5GEdpshxw==
+-----END PUBLIC KEY-----"
+`;
+
+exports[`sign {"is_creator": true}  1`] = `
+Object {
+  "aud": "audience",
+  "exp": Anything,
+  "iat": Anything,
+  "is_creator": true,
+  "iss": "localhost",
+  "item_id": "item_id",
+  "public_read": true,
+  "public_write": false,
+  "user": "Dummy",
+}
+`;
+
+exports[`sign {"public_read": false}  1`] = `
+Object {
+  "aud": "audience",
+  "exp": Anything,
+  "iat": Anything,
+  "is_creator": false,
+  "iss": "localhost",
+  "item_id": "item_id",
+  "public_read": false,
+  "public_write": false,
+  "user": "Dummy",
+}
+`;
+
+exports[`sign {"public_write": true}  1`] = `
+Object {
+  "aud": "audience",
+  "exp": Anything,
+  "iat": Anything,
+  "is_creator": false,
+  "iss": "localhost",
+  "item_id": "item_id",
+  "public_read": true,
+  "public_write": true,
+  "user": "Dummy",
+}
+`;
+
+exports[`sign {"user": "a user"}  1`] = `
+Object {
+  "aud": "audience",
+  "exp": Anything,
+  "iat": Anything,
+  "is_creator": false,
+  "iss": "localhost",
+  "item_id": "item_id",
+  "public_read": true,
+  "public_write": false,
+  "user": "a user",
+}
+`;
+
+exports[`sign undefined  1`] = `
+Object {
+  "aud": "audience",
+  "exp": Anything,
+  "iat": Anything,
+  "is_creator": false,
+  "iss": "localhost",
+  "item_id": "item_id",
+  "public_read": true,
+  "public_write": false,
+  "user": "Dummy",
+}
+`;

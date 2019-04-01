@@ -1,6 +1,5 @@
 
 const supertest = require('supertest'),
-  // {unit_test} = require('../util.js'),
   sut = require('./../../src/route_util.js'),
   express = require('express'),
   send = str => (req, res) => res.status(200).send(str),
