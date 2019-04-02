@@ -44,7 +44,7 @@ module.exports = {
 
   },
   error_handlers: obj => (Object.assign(error_handlers, obj), (req, res, next) => next()),
-  json: (limit = '20mb') => body_parser.json({limit}),
+  json: (limit = '20mb') => body_parser.json({limit, type: () => true}),
   require_permissions: string_or_array_of_perms => (req, res, next) => {
 
     const permissions = Array.isArray(string_or_array_of_perms)

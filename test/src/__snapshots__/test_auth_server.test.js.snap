@@ -3,8 +3,8 @@
 exports[`jwt endpoint default public_key matches private key 1`] = `
 Object {
   "aud": "test_audience",
-  "exp": 1554121191,
-  "iat": 1554117591,
+  "exp": Anything,
+  "iat": Anything,
   "is_creator": false,
   "iss": "localhost",
   "item_id": "test_item",

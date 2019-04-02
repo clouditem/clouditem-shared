@@ -32,6 +32,6 @@ describe('jwt endpoint', () => {
     .then(public_key => fetch(jwt_url)
       .then(res => res.text())
       .then(signed_jwt => jwt.verify(signed_jwt, public_key, {audience: 'test_audience'}))
-      .then(verify_result => expect(verify_result).toMatchSnapshot())));
+      .then(verify_result => expect(verify_result).toMatchSnapshot({iat: expect.anything(), exp: expect.anything()}))));
 
 });

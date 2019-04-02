@@ -30,6 +30,23 @@ Object {
 }
 `;
 
+exports[`middleware "json middleware with not json input": ["This is not a josn"] 1`] = `
+Object {
+  "code": 400,
+  "text": "<!DOCTYPE html>
+<html lang=\\"en\\">
+<head>
+<meta charset=\\"utf-8\\">
+<title>Error</title>
+</head>
+<body>
+<pre>SyntaxError: Unexpected token # in JSON at position 0<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at createStrictSyntaxError (/home/simon/heroku/clouditem-shared/node_modules/body-parser/lib/types/json.js:157:10)<br> &nbsp; &nbsp;at parse (/home/simon/heroku/clouditem-shared/node_modules/body-parser/lib/types/json.js:83:15)<br> &nbsp; &nbsp;at /home/simon/heroku/clouditem-shared/node_modules/body-parser/lib/read.js:121:18<br> &nbsp; &nbsp;at invokeCallback (/home/simon/heroku/clouditem-shared/node_modules/raw-body/index.js:224:16)<br> &nbsp; &nbsp;at done (/home/simon/heroku/clouditem-shared/node_modules/raw-body/index.js:213:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (/home/simon/heroku/clouditem-shared/node_modules/raw-body/index.js:273:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (events.js:182:13)<br> &nbsp; &nbsp;at endReadableNT (_stream_readable.js:1094:12)<br> &nbsp; &nbsp;at process.internalTickCallback (internal/process/next_tick.js:72:19)</pre>
+</body>
+</html>
+",
+}
+`;
+
 exports[`middleware "json with limit": ["{}"] 1`] = `
 Object {
   "code": 200,

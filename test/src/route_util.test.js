@@ -38,6 +38,7 @@ describe('middleware', () => {
   test.each`
   input                                                                     | req_body     |  test_name
   ${{json: undefined, promise: (req, res) => res.send(req.body)}}           |  ${'{}'}     | ${'json'}
+  ${{json: undefined, promise: (req, res) => res.send(req.body)}}           |  ${'This is not a josn'}     | ${'json middleware with not json input'}
   ${{json: '10mb', promise: (req, res) => res.send(req.body)}}              |  ${'{}'}     | ${'json with limit'}
   ${{promise: (req, res) => res.send(req.body), json: '10mb'}}              |  ${'{}'}     | ${'order reverse fail'}
   ${{ensure_logged_in: true, promise: (req, res) => res.send(req.body)}}    |  ${'{}'}     | ${'unauthorized redirects to login'}
