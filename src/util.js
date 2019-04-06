@@ -1,12 +1,8 @@
-const {inspect} = require('util'),
-
-  is_present = val => typeof val !== 'undefined' && val !== null
-    ? true
-    : false,
+const is_present = val => Boolean(typeof val !== 'undefined' && val !== null),
 
   promise_presence = (name, val) => is_present(val)
     ? Promise.resolve(val)
-    : Promise.reject(new Error(`expected ${name} to be present`)),
+    : Promise.reject(new TypeError(`expected ${name} to be present`)),
 
   promise_value_in_field_of_request = (name, field_or_fields, request) => promise_presence('Request', request)
     .then(() => request.promised_params = request.promised_params || {})
@@ -20,7 +16,7 @@ const {inspect} = require('util'),
     ))
     .then(success => success
       ? Promise.resolve(request)
-      : Promise.reject(new Error(`Request does not contain value [${name}] in any of the following fields: [${field_or_fields}]`))
+      : Promise.reject(new TypeError(`Request does not contain value [${name}] in any of the following fields: [${field_or_fields}]`))
     ),
 
   promise_value = value_name => ({in: fields => ({of_request: request => promise_value_in_field_of_request(value_name, fields, request)})});
